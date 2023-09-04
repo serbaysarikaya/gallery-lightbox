@@ -4,18 +4,18 @@
             <img (click)="onPreviewImage(i)" [src]="data.imageSrc" [alt]="data.imageAlt">
         </div>
     </div>
-    <div *ngIf="showMask" class="lightbox">
+    <div *ngIf="showMask" class="lightbox" @animation2>
         <span *ngIf="showCount" class="count">
             {{currentIndex + 1}} /{{totalImageCount}}
         </span>
         <button *ngIf="previewImage" class="close-btn" (click)="onClosePreview()" >
             <i class="fas fa-times"></i>
         </button>
-        <button *ngIf="controls" class="btn-lightbox-carousel btn-prev">
+        <button *ngIf="controls" class="btn-lightbox-carousel btn-prev" (click)="prev()">
             <i class="fas fa-arrow-circle-left icon-lightbox-carousel icon-prev"></i>
         </button>
         <button *ngIf="controls" class="btn-lightbox-carousel btn-next">
-            <i class="fas fa-arrow-circle-right icon-lightbox-carousel icon-next"></i>
+            <i class="fas fa-arrow-circle-right icon-lightbox-carousel icon-next" (click)="next()"></i>
         </button>
         <div *ngIf="previewImage"
         [@animation]="{value:'visible'}"
@@ -25,3 +25,5 @@
         </div>
     </div>
 </div>
+
+

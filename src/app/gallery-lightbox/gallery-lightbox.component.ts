@@ -26,6 +26,12 @@ interface Item {
         animate('150ms', style({ transform: 'scale(0.5)' }))
       ]),
     ]),
+    trigger('animation2', [
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate('50ms', style({ opacity: 0.8 }))
+      ])
+    ])
   ]
 })
 export class GalleryLightboxComponent implements OnInit {
@@ -52,13 +58,29 @@ export class GalleryLightboxComponent implements OnInit {
   }
   onAnimationEnd(event: AnimationEvent) {
     if (event.toState === 'void') {
-      this.showMask= false;
+      this.showMask = false;
 
     }
 
   }
-  onClosePreview(){
-    this.previewImage=false
+  onClosePreview() {
+    this.previewImage = false
+  }
+  next(): void {
+    this.currentIndex = this.currentIndex + 1;
+    if (this.currentIndex > this.galleryData.length - 1) {
+      this.currentIndex = 0;
+    }
+    this.currentLightboxImage =this.galleryData[this.currentIndex]
+  }
+  prev(): void {
+
+    this.currentIndex = this.currentIndex -1;
+    if (this.currentIndex<0) {
+      this.currentIndex = this.galleryData.length-1
+      
+    }
+    this.currentLightboxImage =this.galleryData[this.currentIndex]
   }
 }
 
